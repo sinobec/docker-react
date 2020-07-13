@@ -1,4 +1,4 @@
-# build phase
+# BUILD phase
 FROM node:alpine as builder
 
 WORKDIR '/app'
@@ -7,7 +7,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# run phase
+# RUN phase
 FROM nginx
-
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
